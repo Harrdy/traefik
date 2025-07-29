@@ -19,7 +19,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "/etc/letsencrypt:/etc/letsencrypt:ro"
+      - "${CERT_PATH}:/etc/letsencrypt:ro"
       - "${ROOT_PATH}/traefik.yml:/etc/traefik/traefik.yml"
       - "${ROOT_PATH}/dynamic:/etc/traefik/dynamic"
       - "/var/log/traefik:/var/log/traefik"
