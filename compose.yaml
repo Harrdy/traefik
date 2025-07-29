@@ -1,0 +1,25 @@
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true
+
+services:
+  traefik:
+    image: "traefik:v3.4.5"
+    container_name: "traefik"
+    restart: always
+    networks:
+      frontend:
+      backend:
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - TZ=Europe/Berlin
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/etc/letsencrypt:/etc/letsencrypt:ro"
+      - "${ROOT_PATH}/traefik.yml:/etc/traefik/traefik.yml"
+      - "${ROOT_PATH}/dynamic:/etc/traefik/dynamic"
+      - "/var/log/traefik:/var/log/traefik"
