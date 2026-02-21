@@ -13,10 +13,10 @@ services:
       frontend:
       backend:
     ports:
-      - "80:80"
-      - "443:443"
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
     environment:
-      - TZ=Europe/Berlin
+      - TZ=${TZ:-Europe/Berlin}
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "${CERT_PATH}:/etc/letsencrypt:ro"
