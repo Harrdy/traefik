@@ -22,4 +22,4 @@ services:
       - "${CERT_PATH}:/etc/letsencrypt:ro"
       - "${ROOT_PATH}/traefik.yml:/etc/traefik/traefik.yml"
       - "${ROOT_PATH}/dynamic:/etc/traefik/dynamic"
-      - "/var/log/traefik:/var/log/traefik"
+      - "${LOG_PATH:-/var/log}/traefik:/var/log/traefik"
